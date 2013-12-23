@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>flexibleWapHelper demo</title>
+</head>
+<body style="margin:0;padding:0">
+	<p>
+		请改变窗口大小来观察
+	</p>
+	<h4>fullWidth：</h4>
+	<h5><br/>1.1 将前景图（img）来fullWidth（宽度变化时，保持长宽比）：</h5>
+	<img class="full_width" src="images/1.jpg" title="将前景图（img）来full_width">
+
+	<h5><br/>1.2 将div（背景图）来fullWidth（宽度变化时，保持长宽比）：</h5>
+	<div class="full_width" data-original-width="200" data-original-height="136" style="background-image:url(images/1.jpg);"></div>
+
+	<h5><br/>1.3 将div（背景图）来fullWidth，并将高度设为定值100（宽度变化时，不保持长宽比）：</h5>
+	<div class="full_width_no_adjust_height" data-original-width="200" data-original-height="136" style="background-image:url(images/1.jpg);"></div>
+
+	<hr />
+
+	<h4>prorate：</h4>
+	<h5><br/>2.1 将前景图（img）来prorate：</h5>
+	<div class="prorate" >
+		<img data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;" src="images/2_1.png" />
+		<img data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;" src="images/2_2.png" />
+		<img data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;" src="images/2_3.png" />
+	</div>
+
+	<h5><br/>2.2 将div（背景图）来prorate（宽度变化时，保持长宽比）：</h5>
+	<div class="prorate">
+		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_1.png)"></div>
+		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_2.png)"></div>
+		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_3.png)"></div>
+	</div>
+
+	<h5><br/>2.3 将div（背景图）来prorate，并将高度设为定值80（宽度变化时，不保持长宽比）：</h5>
+	<div class="prorate_no_adjust_height">
+		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_1.png)"></div>
+		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_2.png)"></div>
+		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_3.png)"></div>
+	</div>
+
+	<h5><br/>2.4 将div（背景图）来prorate，并按2:3的比例分配（宽度变化时，保持长宽比）：</h5>
+	<div class="prorate">
+		<div data-box-flex="2" data-original-width="160" data-original-height="100" style="margin:5px;background-image: url(images/3_1.gif)"></div>
+		<div data-box-flex="3" data-original-width="240" data-original-height="100" style="margin:5px;background-image: url(images/3_2.gif)"></div>
+	</div>
+
+	<script src="http://webmap2.map.bdimg.com/yyfm/jQuery_1.x/1.10.2/js/jQuery_1.x.min.js"></script>
+	<!-- // <script src="http://webmap2.map.bdimg.com/yyfm/zepto_default/1.0/js/zepto_default.min.js"></script> -->
+	<!-- // <script src="http://bcs.duapp.com/jieyou-storage/consoleEnable.js"></script> -->
+	<script src="flexibleWapHelper.js"></script>
+	<script>
+		$(function(){
+			//宽度为屏幕宽度，高度按长宽比不变自适应
+			$('.full_width').fullWidth()
+			
+			//宽度为屏幕宽度，高度为恒定值（100px）
+			$('.full_width_no_adjust_height').fullWidth(100)
+			
+			//按子元素的`data-box-flex`属性等分横向剩余区域，高度按长宽比不变自适应
+			$('.prorate').prorate()
+			
+			//按子元素的`data-box-flex`属性等分横向剩余区域，高度为恒定值（80px）
+			$('.prorate_no_adjust_height').prorate(80)
+		})
+	</script>
+</body>
+</html> 

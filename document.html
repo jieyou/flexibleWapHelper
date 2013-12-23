@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>nativeAppAdapter document</title>
+</head>
+<body>
+	<h1>客户端传参解析方法文档</h1>
+	<table style="border-collapse:collapse" border="1">
+		<thead>
+			<tr>
+				<th>方法名</th>
+				<th>方法描述</th>
+				<th>备注</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>getCity</td>
+				<td>通过回调函数的方式获取当前城市</td>
+				<td>首先通过客户端传参获取城市id；没有或不在常用城市列表中则调用http://api.map.baidu.com/location/ip的接口</td>
+				<td>
+<pre>nativeAppAdapter.getCity(function(data){
+	console.log(data.name) // 城市名
+	console.log(data.id) // 城市名id（不一定有）
+})
+// retuens => the `nativeAppAdapter` object, for chain calls</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getBaiduMercator</td>
+				<td>通过回调函数的方式获取当前百度墨卡托坐标</td>
+				<td>首先通过客户端传参获取坐标；没有则使用navigator.geolocation定位，再换算成百度墨卡托坐标</td>
+				<td>
+<pre>nativeAppAdapter.getBaiduMercator(function(data){
+	console.log('百度墨卡托坐标：'+data.x+','+data.y)
+})
+// retuens => the `nativeAppAdapter` object, for chain calls</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getNetStatus</td>
+				<td>获取当前网络链接状态</td>
+				<td>
+<pre>
+首先通过客户端传参获取状态；没有传参则使用navigator.onLine
+全部的状态码和描述：
+{
+	'99':'offline',
+	'100':'unknown',
+	'101':'online_but_connection_type_unknown',
+	'102':'2G',
+	'103':'3G_or_above_3G',
+	'199':'wifi'
+}
+</pre>
+				</td>
+				<td>
+<pre>nativeAppAdapter.getNetStatus()
+// returns object => {
+//		code:'103', // 状态码
+//		describe:'3G_or_above_3G' // 网络描述
+// }
+</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getScreenCssPixels</td>
+				<td>获取当前屏幕CSS参照像素</td>
+				<td>
+					首先通过客户端传参计算出屏幕CSS参照像素；没有则取window.screen.width|height<br/>
+					页面中的CSS参照像素一般不是硬件的物理像素，具体点击<a href="http://blog.youyo.name/archives/mobile-device-screen-pixel-density.html">这里</a>
+				</td>
+				<td>
+<pre>nativeAppAdapter.getScreenCssPixels()
+// returns object => {
+//		width:'320',
+//		height:'480'
+// }
+</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getBduss</td>
+				<td>获取当前用户bduss</td>
+				<td>
+					只能通过客户端传参获取；没有则为null
+				</td>
+				<td>
+<pre>nativeAppAdapter.getBduss()
+// returns => string `bduss`</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getMb</td>
+				<td>获取当前机型</td>
+				<td>
+					只能通过客户端传参获取；没有则为null
+				</td>
+				<td>
+<pre>nativeAppAdapter.getMb()
+// returns => string `mb`</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getOs</td>
+				<td>获取当前操作系统信息</td>
+				<td>
+					只能通过客户端传参获取；没有则为null
+				</td>
+				<td>
+<pre>nativeAppAdapter.getOs()
+// returns => string `os`</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getSv</td>
+				<td>获取当前地图客户端版本信息</td>
+				<td>
+					只能通过客户端传参获取；没有则为null
+				</td>
+				<td>
+<pre>nativeAppAdapter.getSv()
+// returns => string `sv`</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getCuid</td>
+				<td>获取当前设备的cuid</td>
+				<td>
+					只能通过客户端传参获取；没有则为null
+				</td>
+				<td>
+<pre>nativeAppAdapter.getCuid()
+// returns => string `cuid`</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html> 

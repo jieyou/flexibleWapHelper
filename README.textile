@@ -1,0 +1,110 @@
+h1. flexibleWapHelper
+
+一个基于Zepto或jQuery插件，帮助你构建【能灵活自适应宽度】的wap网页
+
+h2. 快速上手
+
+h3. 构建一个宽度为屏幕宽度，高度按长宽比不变自适应的banner图
+
+假设你已经在html文档中为移动设备指定好了 @viewport@ ，并且重设了body的 @margin@ 和 @padding@ 值均为0，如：
+
+<pre>
+<!DOCTYPE HTML>
+<html lang="zh">
+	<head>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	</head>
+	<body style="margin:0;padding:0">
+		<script src="zepto.js"></script>
+		<script src="flexibleWapHelper.js"></script>
+	</body>
+</html>
+</pre>
+
+你有一个banner图（或某种块状元素），想设置宽度为屏幕宽度，高度按长宽比不变自适应，则在body中加入：
+
+<pre>
+<body style="margin:0;padding:0">
+	<!--加入banner图标签，注意在`data-original-width`和`data-original-height`属性上设置它的原始大小-->
+<!-- + -->	<div class="my_banner" data-original-width="200" data-original-height="136" style="background-image:url(images/1.jpg);"></div>
+	<!--加入banner图标签 end-->
+	<script src="zepto.js"></script>
+	<script src="flexibleWapHelper.js"></script>
+	<!--加入相关代码-->
+<!-- + -->	<script>
+/* + */			$(document).ready(function(){
+/* + */				$('.my_banner').fullWidth()
+/* + */			})
+/* + */		</script>
+	<!--加入相关代码 end-->
+</body>
+</pre>
+
+这样就完成了。
+
+另外你可以指定高度为恒定值，不随着宽度不同而保持长宽比不变，只需要给fullWidth设置一个数字参数作为指定的高度值，如：
+
+<pre>
+$('.my_banner').fullWidth(100) // 指定高度恒为100px，不随宽度不同而保持长宽比不变
+</pre>
+
+h3. 将三幅同样大小图片（或某种块状元素）三等分`横向剩余区域`，高度按长宽比不变自适应。
+
+所谓`横向剩余区域`是指父节点的contentWidth，除去父节点padding、没有`data-box-flex`属性的子节点、有`data-box-flex`属性的子节点的margin、padding、border后剩余的区域。
+在上述初始html的基础上，在body中加入：
+
+<pre>
+<body style="margin:0;padding:0">
+	<!--加入父节点`.prorate`，并加入三个子节点，注意在子节点的`data-original-width`和`data-original-height`属性上设置它的原始大小，并通过子节点的`data-box-flex`属性设置子节点占宽度为1:1:1-->
+<!-- + -->	<div class="my_prorate">
+<!-- + -->		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_1.png)"></div>
+<!-- + -->		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_2.png)"></div>
+<!-- + -->		<div data-box-flex="1" data-original-width="100" data-original-height="125" style="margin:5px;background-image: url(images/2_3.png)"></div>
+<!-- + -->	</div>
+	<!--加入标签 end-->
+	<script src="zepto.js"></script>
+	<script src="flexibleWapHelper.js"></script>
+	<!--加入相关代码-->
+<!-- + -->	<script>
+/* + */			$(document).ready(function(){
+/* + */				$('.my_prorate').prorate()
+/* + */			})
+/* + */		</script>
+	<!--加入相关代码 end-->
+</body>
+</pre>
+
+这里同样可以指定高度为恒定值，不随着宽度不同而保持长宽比不变，只需要给prorate设置一个数字参数作为指定的高度值，如：
+
+<pre>
+$('.my_prorate').prorate(80) // 指定高度恒为80px，不随宽度不同而保持长宽比不变
+</pre>
+
+图片（或某种块状元素）不是只能等分，你可以通过调整`data-box-flex`属性来确定它们的宽度比例，如下面的例子是两张图片2:3等分`横向剩余区域`：
+
+<pre>
+<body style="margin:0;padding:0">
+	<!--加入父节点`.prorate`，并加入三个子节点，注意在子节点的`data-original-width`和`data-original-height`属性上设置它的原始大小，并通过子节点的`data-box-flex`属性设置子节点占宽度为2:3-->
+<!-- + -->	<div class="my_prorate">
+<!-- + -->		<div data-box-flex="2" data-original-width="160" data-original-height="100" style="margin:5px;background-image: url(images/3_1.gif)"></div>
+<!-- + -->		<div data-box-flex="3" data-original-width="240" data-original-height="100" style="margin:5px;background-image: url(images/3_2.gif)"></div>
+<!-- + -->	</div>
+	<!--加入标签 end-->
+	<script src="zepto.js"></script>
+	<script src="flexibleWapHelper.js"></script>
+	<!--加入相关代码-->
+<!-- + -->	<script>
+/* + */			$(document).ready(function(){
+/* + */				$('.my_prorate').prorate()
+/* + */			})
+/* + */		</script>
+	<!--加入相关代码 end-->
+</body>
+</pre>
+
+更详细的demo请看源码包里面的demo.html
+
+
+h2. License
+
+"MIT License":http://www.opensource.org/licenses/mit-license.php
