@@ -6,7 +6,7 @@ h2. 快速上手
 
 h3. 构建一个宽度为屏幕宽度，高度按长宽比不变自适应的banner图
 
-假设你已经在html文档中为移动设备指定好了 @viewport@ ，并且重设了body的 @margin@ 和 @padding@ 值均为0，如：
+假设你已经在html文档中为移动设备指定好了 @viewport@ ，重设了body的 @margin@ 和 @padding@ 值均为0，并且已经引入zepto（或jQuery）和该组件 flexibleWapHelper，如：
 
 <pre>
 <!DOCTYPE HTML>
