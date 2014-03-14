@@ -1,3 +1,8 @@
+/*!
+ * author:jieyou
+ * contacts:百度hi->youyo1122
+ * see https://github.com/jieyou/flexibleWapHelper
+ */
 ;(function($){
 	var $window = $(window),
 		backgroundSizeStr = 'background-size',
