@@ -2,6 +2,11 @@ h1. flexibleWapHelper
 
 一个基于Zepto或jQuery插件，帮助你构建【能灵活自适应宽度】的wap网页
 
+h2. 当前用户
+* "百度地图":http://map.baidu.com/
+* "百度团购":http://tuan.baidu.com/
+* +You
+
 h2. 快速上手
 
 h3. 构建一个宽度为屏幕宽度，高度按长宽比不变自适应的banner图
