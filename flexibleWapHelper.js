@@ -1,6 +1,6 @@
 /*!
  * author:jieyou
- * contacts:百度hi->youyo1122
+ * contacts:baidu hi->youyo1122
  * see https://github.com/jieyou/flexibleWapHelper
  */
 ;(function($){
@@ -109,7 +109,8 @@
 		})
 		this.each(function(j,k){
 			var $k = that.eq(j),
-				curStyle = $k.attr('style')
+				// curStyle = $k.attr('style') // in zepto will return [object CSSStyleDeclaration]
+				curStyle = $k[0].getAttribute('style')
 			// all style has the same key -- `display`, so can not use .css({}) directly
 			$k.attr('style',curStyle?(curStyle + boxFlexCssStr):boxFlexCssStr)
 		})
